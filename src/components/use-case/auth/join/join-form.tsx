@@ -1,8 +1,8 @@
 'use client'
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, Form } from "react-hook-form"
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "shared/ui/form"
+import { useForm } from "react-hook-form"
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "shared/ui/form"
 import { Button } from "shared/ui/button"
 import { Input } from "shared/ui/input"
 import { JoinSchemas, JoinTypes } from "../models/credentials"
@@ -13,7 +13,7 @@ export const JoinForm = () => {
         defaultValues: {
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
         },
     })
 

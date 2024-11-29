@@ -5,7 +5,6 @@ import { ThemeProvider } from "providers/theme-providers";
 
 
 const mainFont = Geist({
-  display: "swap",
   subsets: ["latin"]
 })
 
