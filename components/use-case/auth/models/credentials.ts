@@ -8,7 +8,7 @@ export const LoginSchema = z.object({
 export type LoginType = z.infer<typeof LoginSchema>;
 
 export const JoinSchema = LoginSchema.extend({
-  confirmPassword: z.string().min(4),
-}).refine(({ password, confirmPassword }) => password === confirmPassword);
+  name: z.string().min(1),
+});
 
 export type JoinType = z.infer<typeof JoinSchema>;

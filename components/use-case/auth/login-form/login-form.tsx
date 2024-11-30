@@ -7,15 +7,19 @@ import { LoginSchema, LoginType } from '../models/credentials'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/shared/ui/form'
 import { Input } from '@/components/shared/ui/input'
 import { Button } from '@/components/shared/ui/button'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, EyeClosed } from 'lucide-react'
 import Image from 'next/image'
 import EynSvg from '@/components/shared/assets/eyn.svg'
 import TbankSvg from '@/components/shared/assets/tbank.svg'
 import GoogleSvgSvg from '@/components/shared/assets/googleSvg.svg'
 import Link from 'next/link'
 import { motion } from 'motion/react'
+import { Eye } from 'lucide-react'
+import { useState } from 'react'
 
 export const LoginForm = () => {
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
     const form = useForm<LoginType>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -67,14 +71,20 @@ export const LoginForm = () => {
                                     Пароль
                                     <Link href={'#'} className='underline underline-offset-2'>Забыли пароль?</Link>
                                 </FormLabel>
-                                <FormControl>
-                                    <Input type='password' {...field} />
-                                </FormControl>
+                                <div className='relative'>
+                                    <FormControl>
+                                        <Input type={isShowPassword ? "text" : 'password'} {...field} className='pr-12' />
+                                    </FormControl>
+                                    <span className='position absolute right-3 top-1/2 -translate-y-1/2' onClick={() => setIsShowPassword(!isShowPassword)}>
+                                        {isShowPassword ? <Eye /> : <EyeClosed />}
+                                    </span>
+                                </div>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <Button>
+
+                    <Button className='select-none'>
                         Продолжить <ArrowRight className='primary-foreground' />
                     </Button>
                 </form>
