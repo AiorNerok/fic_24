@@ -19,12 +19,7 @@
       }
     ],
     "paths": {
-      "providers/*": ["./src/components/providers/*"],
-      "widgets/*": ["./src/components/widgets/*"],
-      "use-case/*": ["./src/components/use-case/*"],
-      "entities/*": ["./src/components/entities/*"],
-      "shared/*": ["./src/components/shared/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
