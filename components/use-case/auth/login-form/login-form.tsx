@@ -7,7 +7,7 @@ import { LoginSchema, LoginType } from '../models/credentials'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/shared/ui/form'
 import { Input } from '@/components/shared/ui/input'
 import { Button } from '@/components/shared/ui/button'
-import { ArrowRight, EyeClosed } from 'lucide-react'
+import { ArrowRight, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import EynSvg from '@/components/shared/assets/eyn.svg'
 import TbankSvg from '@/components/shared/assets/tbank.svg'
@@ -76,7 +76,7 @@ export const LoginForm = () => {
                                         <Input type={isShowPassword ? "text" : 'password'} {...field} className='pr-12' />
                                     </FormControl>
                                     <span className='position absolute right-3 top-1/2 -translate-y-1/2' onClick={() => setIsShowPassword(!isShowPassword)}>
-                                        {isShowPassword ? <Eye /> : <EyeClosed />}
+                                        {isShowPassword ? <Eye /> : <EyeOff />}
                                     </span>
                                 </div>
                                 <FormMessage />
