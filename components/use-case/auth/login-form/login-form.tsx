@@ -31,7 +31,6 @@ export const LoginForm = () => {
     })
 
     const onSubmit = (value: LoginType) => {
-        console.log(value)
         signIn('credentials', value)
     }
 
