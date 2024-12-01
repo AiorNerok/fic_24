@@ -6,14 +6,35 @@ import { DotButton, useDotButton } from './dot'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import { cn } from '@/lib/utils'
+import Pic1 from '@/components/shared/assets/pic1.png'
+import Pic2 from '@/components/shared/assets/pic2.png'
+import Pic3 from '@/components/shared/assets/pic3.png'
+import { SvgIcons } from '@/components/shared/ui/svg-icons'
+import Image from 'next/image'
 
-type PropType = {
-    slides: number[]
-    options?: EmblaOptionsType
-}
+const OPTIONS: EmblaOptionsType = { align: 'start', loop: true }
 
-export const GalleryCarousel = ({ slides, options }: PropType) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+const SLIDES = [{
+    img: Pic1,
+    title: 'Планируйте бюджет',
+    subtitle: 'Распределяйте доходы и расходы так, чтобы всё было под контролем',
+    position: 'bottom'
+}, {
+    under: SvgIcons.qr,
+    img: Pic2,
+    title: 'Умный помощник',
+    subtitle: 'Подсветит риски и сделает более глубокую аналитику по вашему запросу',
+    position: 'top'
+},
+{
+    img: Pic3,
+    title: 'Обучайтесь',
+    subtitle: 'Эксперты расскажут о финансовой подушке и как пережить кризис',
+    position: 'top'
+}]
+
+export const GalleryCarousel = () => {
+    const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [Autoplay({ delay: 100000000000000000 })])
 
     const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
         const autoplay = emblaApi?.plugins()?.autoplay
@@ -36,9 +57,14 @@ export const GalleryCarousel = ({ slides, options }: PropType) => {
         <section className="embla relative">
             <div className="embla__viewport border rounded-2xl" ref={emblaRef}>
                 <div className="embla__container">
-                    {slides.map((index) => (
-                        <div className="embla__slide" key={index}>
-                            <div className="embla__slide__number">{index + 1}</div>
+                    {SLIDES.map(({ img, position, subtitle, title, under: Icon }, index) => (
+                        <div className={cn("embla__slide h-[500px] relative")} key={index}>
+                            <Image className='absolute' src={img} fill alt={title} />
+                            <div className={cn("embla__slide__number h-full flex flex-col relative", position == 'top' ? 'justify-start pt-7' : 'justify-end pb-7')}>
+                                {Icon && <div className='relative'><Icon /></div>}
+                                <h2 className='leading-6 text-sm font-medium font-sans'>{title}</h2>
+                                <h4 className='leading-4 text-xs font-normal font-sans w-3/4 text-center'>{subtitle}</h4>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -53,6 +79,6 @@ export const GalleryCarousel = ({ slides, options }: PropType) => {
                     />
                 ))}
             </div>
-        </section>
+        </section >
     )
 }
