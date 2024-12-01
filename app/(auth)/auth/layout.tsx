@@ -1,7 +1,6 @@
 'use client';
 
 import { PropsWithChildren } from "react";
-import { EmblaOptionsType } from 'embla-carousel'
 import { GalleryCarousel } from "@/components/entities/gallery";
 
 

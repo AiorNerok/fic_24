@@ -1,6 +1,5 @@
 import { Header } from "@/components/entities/header/ui/header";
 import { Profile } from "@/components/entities/profile/ui/profile";
-import { SignOutUser } from "@/components/use-case/auth";
 import { Dashboard } from "@/components/widgets/dashboard/ui";
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
