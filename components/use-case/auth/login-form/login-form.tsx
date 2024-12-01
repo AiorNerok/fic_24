@@ -16,6 +16,8 @@ import Link from 'next/link'
 import { motion } from 'motion/react'
 import { Eye } from 'lucide-react'
 import { useState } from 'react'
+import { signIn } from "next-auth/react";
+
 
 export const LoginForm = () => {
     const [isShowPassword, setIsShowPassword] = useState(false)
@@ -30,6 +32,7 @@ export const LoginForm = () => {
 
     const onSubmit = (value: LoginType) => {
         console.log(value)
+        signIn('credentials', value)
     }
 
     return (

@@ -14,8 +14,14 @@ import TbankSvg from '@/components/shared/assets/tbank.svg'
 import GoogleSvgSvg from '@/components/shared/assets/googleSvg.svg'
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { createNewUser } from '@/server/actions/users'
+import { useAction } from "next-safe-action/hooks";
+import { toast } from '@/components/shared/hooks/use-toast'
+import { useRouter } from "next/navigation";
+
 
 export const JoinForm = () => {
+    const router = useRouter()
     const [isShowPassword, setIsShowPassword] = useState(false)
 
     const form = useForm<JoinType>({
@@ -27,8 +33,28 @@ export const JoinForm = () => {
         }
     })
 
+    const { execute } = useAction(createNewUser, {
+        onSuccess(data) {
+            if (data.data?.error) {
+                toast({
+                    title: 'error',
+                    description: data.data.error,
+                    variant: 'destructive',
+                });
+                router.push("/auth/join");
+            } else if (data.data?.success) {
+                toast({
+                    title: 'success',
+                    description: data.data.success,
+                    variant: 'default',
+                });
+                router.push("/auth/login");
+            }
+        },
+    });
+
     const onSubmit = (value: JoinType) => {
-        console.log(value)
+        execute(value)
     }
 
     return (
@@ -69,14 +95,9 @@ export const JoinForm = () => {
                                 <FormLabel>
                                     Email
                                 </FormLabel>
-                                <div className='relative'>
-                                    <FormControl>
-                                        <Input type={isShowPassword ? "text" : 'password'} {...field} className='pr-12' />
-                                    </FormControl>
-                                    <span className='position absolute right-3 top-1/2 -translate-y-1/2' onClick={() => setIsShowPassword(!isShowPassword)}>
-                                        {isShowPassword ? <Eye /> : <EyeOff />}
-                                    </span>
-                                </div>
+                                <FormControl>
+                                    <Input type='email' {...field} />
+                                </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -89,13 +110,19 @@ export const JoinForm = () => {
                                 <FormLabel>
                                     Пароль
                                 </FormLabel>
-                                <FormControl>
-                                    <Input type='password' {...field} />
-                                </FormControl>
+                                <div className='relative'>
+                                    <FormControl>
+                                        <Input type={isShowPassword ? "text" : 'password'} {...field} className='pr-12' />
+                                    </FormControl>
+                                    <span className='position absolute right-3 top-1/2 -translate-y-1/2' onClick={() => setIsShowPassword(!isShowPassword)}>
+                                        {isShowPassword ? <Eye /> : <EyeOff />}
+                                    </span>
+                                </div>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
+
 
                     <Button>
                         Продолжить <ArrowRight className='primary-foreground' />
