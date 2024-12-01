@@ -16,6 +16,7 @@ import {
 } from "@/components/shared/ui/dropdown-menu"
 import { SvgIcons } from "@/components/shared/ui/svg-icons"
 import { Button } from '@/components/shared/ui/button'
+import { signOut } from "next-auth/react"
 
 export const Profile = () => {
     return (
@@ -70,7 +71,7 @@ export const Profile = () => {
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuItem disabled>API</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={()=>signOut()}>
                     Sign Out
                 </DropdownMenuItem>
             </DropdownMenuContent>

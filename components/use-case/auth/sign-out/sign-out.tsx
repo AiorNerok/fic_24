@@ -1,3 +1,4 @@
+'use client'
 
 import { signOut } from '@/server/auth'
 import { Button } from "@/components/shared/ui/button"

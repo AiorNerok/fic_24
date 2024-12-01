@@ -11,6 +11,7 @@ import Pic2 from '@/components/shared/assets/pic2.png'
 import Pic3 from '@/components/shared/assets/pic3.png'
 import { SvgIcons } from '@/components/shared/ui/svg-icons'
 import Image from 'next/image'
+import { motion } from 'motion/react'
 
 const OPTIONS: EmblaOptionsType = { align: 'start', loop: true }
 
@@ -54,13 +55,18 @@ export const GalleryCarousel = () => {
     )
 
     return (
-        <section className="embla relative">
+        <motion.section
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3, delay: .15, ease: "linear" }}
+
+            className="embla relative">
             <div className="embla__viewport border rounded-2xl" ref={emblaRef}>
                 <div className="embla__container">
                     {SLIDES.map(({ img, position, subtitle, title, under: Icon }, index) => (
                         <div className={cn("embla__slide h-[500px] relative")} key={index}>
                             <Image className='absolute' src={img} fill alt={title} />
-                            <div className={cn("embla__slide__number h-full flex flex-col relative", position == 'top' ? 'justify-start pt-7' : 'justify-end pb-7')}>
+                            <div className={cn("embla__slide__number h-full flex flex-col relative", position == 'top' ? 'justify-start pt-7' : 'justify-end pb-20')}>
                                 {Icon && <div className='relative'><Icon /></div>}
                                 <h2 className='leading-6 text-sm font-medium font-sans'>{title}</h2>
                                 <h4 className='leading-4 text-xs font-normal font-sans w-3/4 text-center'>{subtitle}</h4>
@@ -79,6 +85,6 @@ export const GalleryCarousel = () => {
                     />
                 ))}
             </div>
-        </section >
+        </motion.section >
     )
 }
