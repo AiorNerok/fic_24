@@ -1,4 +1,5 @@
-import { Button } from "@/components/shared/ui/button"
+'use client'
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -13,13 +14,16 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/shared/ui/dropdown-menu"
+import { SvgIcons } from "@/components/shared/ui/svg-icons"
+import { Button } from '@/components/shared/ui/button'
+import { SignOutUser } from '@/components/use-case/auth'
 
-export function DropdownMenuDemo() {
+export const Profile = () => {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                    
+            <DropdownMenuTrigger asChild className="cursor-pointer">
+                <Button variant={'ghost'} className='p-0 focus-visible:'>
+                    <SvgIcons.eynBig />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -68,8 +72,7 @@ export function DropdownMenuDemo() {
                 <DropdownMenuItem disabled>API</DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                    Log out
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    Sign Out
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

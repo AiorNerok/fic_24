@@ -51,6 +51,9 @@ export const JoinForm = () => {
                 router.push("/auth/login");
             }
         },
+        onError(data){
+            console.log(data)
+        }
     });
 
     const onSubmit = (value: JoinType) => {

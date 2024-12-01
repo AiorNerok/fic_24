@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SessionProvider } from "next-auth/react"
-import { Header } from "@/components/entities/header/ui/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,7 +24,7 @@ export default function RootLayout({children, }: Readonly<{children: React.React
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <ThemeProvider
           attribute="class"
@@ -34,9 +33,6 @@ export default function RootLayout({children, }: Readonly<{children: React.React
           disableTransitionOnChange
         >
           <SessionProvider>
-            <Header>
-              
-            </Header>
             {children}
           </SessionProvider>
         </ThemeProvider>
