@@ -16,7 +16,6 @@ import {
 } from "@/components/shared/ui/dropdown-menu"
 import { SvgIcons } from "@/components/shared/ui/svg-icons"
 import { Button } from '@/components/shared/ui/button'
-import { SignOutUser } from '@/components/use-case/auth'
 
 export const Profile = () => {
     return (

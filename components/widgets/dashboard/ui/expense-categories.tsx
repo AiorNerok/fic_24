@@ -5,7 +5,6 @@ import { Pie, PieChart } from "recharts"
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/components/shared/ui/card"

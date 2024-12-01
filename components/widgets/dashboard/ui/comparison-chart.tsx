@@ -6,7 +6,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
